@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Health_App_Record</string>
+    <string name="action_settings">Settings</string>
+    <string name="name_hint">Enter Your Name</string>
+    <string name="sugar_level">Enter Sugar Level</string>
+    <string name="bp_level">Enter BP Reading</string>
+    <string name="save_btn">Save</string>
+</resources>

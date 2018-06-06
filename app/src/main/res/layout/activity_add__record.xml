@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nikhil.health_app_record.Add_Record">
+
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="63dp"
+        android:hint="@string/name_hint" />
+
+    <EditText
+        android:id="@+id/BP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/name"
+        android:layout_alignStart="@+id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="47dp"
+        android:hint="@string/bp_level"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/sugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/BP"
+        android:layout_below="@+id/BP"
+        android:layout_marginTop="60dp"
+        android:hint="@string/sugar_level"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/sugar"
+        android:layout_below="@+id/sugar"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/save_btn"
+        />
+
+</RelativeLayout>
