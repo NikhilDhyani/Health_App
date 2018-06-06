@@ -24,7 +24,13 @@ public class Add_Record extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__record);
 
-     //   save.setOnClickListener(this);
+        savenow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Whatsapp!",Toast.LENGTH_LONG).show();
+
+            }
+        });
       
 
 
