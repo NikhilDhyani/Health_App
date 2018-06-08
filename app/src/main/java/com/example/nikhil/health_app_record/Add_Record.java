@@ -52,16 +52,7 @@ public class Add_Record extends AppCompatActivity {
 
         appDatabase = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"userdb").build();
 
-        String myname = name.getText().toString();
-        int bpreading = Integer.parseInt( bp_reading.toString());
-        int sugarreading = Integer.parseInt( sugar_reading.toString());
-
-
-        final Record record = new Record();
-
-        record.setName(myname);
-        record.setBp_reading(bpreading);
-        record.setSugar_reading(sugarreading);
+       final String myname = name.getText().toString();
 
 
 
@@ -70,7 +61,18 @@ public class Add_Record extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getApplicationContext(),"Whatsapp!",Toast.LENGTH_LONG).show();
+                int bpreading = Integer.parseInt( bp_reading.getText().toString());
+                int sugarreading = Integer.parseInt( sugar_reading.getText().toString());
+
+
+                final Record record = new Record();
+
+                record.setName(myname);
+                record.setBp_reading(bpreading);
+                record.setSugar_reading(sugarreading);
+
+
+               // Toast.makeText(getApplicationContext(),"Whatsapp!",Toast.LENGTH_LONG).show();
                 insertUser(record);
 
             }
@@ -101,7 +103,7 @@ public class Add_Record extends AppCompatActivity {
 */
 
     public void insertUser(final Record user) {
-        new AsyncTask<Void, Void, Void>() {
+       /* new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void...voids) {
 
@@ -109,10 +111,14 @@ public class Add_Record extends AppCompatActivity {
 
 
 
-                return null;
+
             }
         }.execute();
 
+       */
+        AsyncTaskRunner runner = new AsyncTaskRunner();
+
+        runner.execute(user);
 
 
     }
