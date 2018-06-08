@@ -82,3 +82,4 @@ public class Record {
         this.sugar_reading = sugar_reading;
     }
 }
+//After creating Entity class now I will create DAO which is an interface. (Data Access Object)

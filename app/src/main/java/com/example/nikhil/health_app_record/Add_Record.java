@@ -1,6 +1,9 @@
 package com.example.nikhil.health_app_record;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.UserHandle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,10 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Add_Record extends AppCompatActivity implements  View.OnClickListener{
+public class Add_Record extends AppCompatActivity {
 
     EditText name,bp_reading,sugar_reading;
     Button savenow;
+
+    //Here we are creating a variable of type database
+
+     AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +50,38 @@ public class Add_Record extends AppCompatActivity implements  View.OnClickListen
         sugar_reading =  findViewById(R.id.sugar);
         savenow = (Button) findViewById(R.id.saveBtn);
 
-        savenow.setOnClickListener(this);
+        appDatabase = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"userdb").build();
+
+        String myname = name.getText().toString();
+        int bpreading = Integer.parseInt( bp_reading.toString());
+        int sugarreading = Integer.parseInt( sugar_reading.toString());
+
+
+        final Record record = new Record();
+
+        record.setName(myname);
+        record.setBp_reading(bpreading);
+        record.setSugar_reading(sugarreading);
+
+
+
+
+        savenow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(getApplicationContext(),"Whatsapp!",Toast.LENGTH_LONG).show();
+                insertUser(record);
+
+            }
+        });
 
 
 
     }
 
 
-
+/*
     @Override
     public void onClick(View view) {
 
@@ -58,11 +89,54 @@ public class Add_Record extends AppCompatActivity implements  View.OnClickListen
        {
            case R.id.saveBtn :  Toast.makeText(getApplicationContext(),"Whatsapp!",Toast.LENGTH_LONG).show();
 
-                                Intent intent = new Intent(Add_Record.this,MainActivity.class);
-                                startActivity(intent);
+                               insertUser(Record r);
+
+                                //Intent intent = new Intent(Add_Record.this,MainActivity.class);
+                                //startActivity(intent);
 
        }
 
+
+    }
+*/
+
+    public void insertUser(final Record user) {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void...voids) {
+
+                appDatabase.daoClass().addEntry(user);
+
+
+
+                return null;
+            }
+        }.execute();
+
+
+
+    }
+
+
+    private class AsyncTaskRunner extends AsyncTask<Record,Void,String>
+    {
+
+
+        @Override
+        protected String  doInBackground(Record... records) {
+
+            Record one = records[0];
+            appDatabase.daoClass().addEntry(one);
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String two) {
+            super.onPostExecute(two);
+            Toast.makeText(getApplicationContext(),"Added Successfully",Toast.LENGTH_LONG).show();
+        }
 
     }
 
